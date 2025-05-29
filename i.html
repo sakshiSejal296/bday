@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sajjad.exe — Birthday Surprise 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #ffe0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #d6336c;
+    }
+
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-top: 10px;
+      border: 4px solid #ff5c8a;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    #console {
+      background: #fff0f5;
+      border-radius: 15px;
+      padding: 20px;
+      width: 320px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      font-family: 'Courier New', Courier, monospace;
+      color: #5c2c38;
+      height: 200px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      display: none;
+    }
+
+    #startBtn, #boopBtn {
+      margin-top: 20px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      background: #ff5c8a;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #startBtn:hover, #boopBtn:hover {
+      background: #ff2e66;
+    }
+
+    #loveMsg {
+      display: none;
+      font-size: 1.2rem;
+      color: #5c2c38;
+      margin-top: 20px;
+      white-space: pre-line;
+    }
+
+    #confetti {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .confetti {
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      background: red;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>🎉 Welcome to Sajjad.exe 🎉</h1>
+<img src="saj1.jpg" alt="Birthday Boy Photo">
+
+<button id="startBtn">Start My Birthday 💫</button>
+
+<div id="console"></div>
+<div id="loveMsg"></div>
+<button id="boopBtn" style="display:none;">Boop My Nose 👃</button>
+<div id="confetti"></div>
+<audio id="bdayMusic" src="bday.mp3" autoplay loop></audio>
+
+<script>
+  const startBtn = document.getElementById('startBtn');
+  const consoleBox = document.getElementById('console');
+  const loveMsg = document.getElementById('loveMsg');
+  const boopBtn = document.getElementById('boopBtn');
+  const confettiContainer = document.getElementById('confetti');
+  const bdayMusic = document.getElementById('bdayMusic');
+
+  const lines = [
+    "Booting up Sajjad.exe...",
+    "Scanning smile... ✔️ Yep, still illegally charming 😏",
+    "Locating chill vibes... 🌊 Found: Maxed out",
+    "sajjad stressed? i will smash your face.",
+    "Injecting birthday mode... 🎂",
+    "Simulating hugs... 🤗",
+    "Running 'blush.exe' ... 🥰",
+    "Rendering Sakshi's affection...",
+    "Loading... please don’t press Alt+F4 🙃",
+    "Activating 'Good Vibes Only' protocol 🌈",
+    "You’re now cleared for birthday awesomeness 🎉",
+    "Birthday Blast incoming... 🎂"
+  ];
+
+  const loveNote = `
+🎈 Hey Sajjad,
+
+Happy Birthday to the guy who manages to be smart, weird, funny, thoda stressed — all at once.  
+
+Wish I could teleport for the day with a cake, but for now — here's your birthday.exe running on remote Sakshi energy 💻✨
+
+You deserve cake, chaos, kisses, 
+and maybe a surprise appearance from Sakshi (just maybe 😜).
+
+Happy Birthday, my fav distraction 💖
+
+— Sakshi
+`;
+
+  startBtn.addEventListener('click', async () => {
+    startBtn.style.display = 'none';
+    consoleBox.style.display = 'block';
+    bdayMusic.play();
+
+    for (let line of lines) {
+      await new Promise(res => setTimeout(res, 1000));
+      consoleBox.textContent += line + "\n";
+      consoleBox.scrollTop = consoleBox.scrollHeight;
+    }
+
+    setTimeout(() => {
+      throwConfetti();
+      loveMsg.innerText = loveNote;
+      loveMsg.style.display = 'block';
+      boopBtn.style.display = 'inline-block';
+    }, 1000);
+  });
+
+  boopBtn.addEventListener('click', () => {
+    alert("Boop! That was Sakshi booping you from far away. 😜");
+  });
+
+  function throwConfetti() {
+    for (let i = 0; i < 80; i++) {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.left = Math.random() * 100 + "vw";
+      confetti.style.top = "-10px";
+      confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+      confetti.style.animationDuration = 2 + Math.random() * 3 + "s";
+      confettiContainer.appendChild(confetti);
+      setTimeout(() => confetti.remove(), 5000);
+    }
+  }
+</script>
+
+</body>
+</html>
